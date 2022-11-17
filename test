@@ -1,0 +1,28 @@
+import telebot
+import schedule
+from threading import Thread
+from time import sleep
+TOKEN = '5787481985:AAHYZg_DCaRum6Mx8dP6y1_gCOxXItqyjGI'
+bot = telebot.TeleBot(TOKEN)
+some_id = 765503071
+
+def schedule_checker():
+    while True:
+        schedule.run_pending()
+        sleep(1)
+def function_to_run():
+    return bot.send_message(some_id, 'Ты програмировал сегодня?')
+if __name__ == '__main__':
+    schedule.every().day.at('23:02').do(function_to_run)
+    Thread(target=schedule_checker).start()
+    @bot.message_handler(content_types=['text'])
+    def send_message(message):
+        if message.text == 'да':
+            bot.send_message(message.chat.id, 'Красавчик бляяя')
+        elif message.text == 'нет':
+            bot.send_message(message.chat.id, 'Ублюдок жиесть')
+        else:
+            bot.send_message(message.chat.id, 'Ты что несешь полупидор')
+
+
+bot.infinity_polling()
