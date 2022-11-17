@@ -18,11 +18,11 @@ if __name__ == '__main__':
     @bot.message_handler(content_types=['text'])
     def send_message(message):
         if message.text == 'да':
-            bot.send_message(message.chat.id, 'Красавчик бляяя')
+            bot.send_message(message.chat.id, 'Молодец')
         elif message.text == 'нет':
-            bot.send_message(message.chat.id, 'Ублюдок жиесть')
+            bot.send_message(message.chat.id, 'Пора начать')
         else:
-            bot.send_message(message.chat.id, 'Ты что несешь полупидор')
+            bot.send_message(message.chat.id, 'Я не понимаю тебя')
 
 
 bot.infinity_polling()
